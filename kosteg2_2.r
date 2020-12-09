@@ -11,7 +11,11 @@ for(i in 1:7)
 
 row.names(data) = c("olija", "margrarin", "produkti", "low fat milk", "normal milk", "extra fat milk", "dry milk") 
 data
-barplot(as.matrix(t(data[c(1:3),])), beside = TRUE, legend.text = TRUE, col = seq(5 * n, 5 * n + 10, len = 9), main = paste(row.names(data)[c(1:3)], sep = ", "))
+barplot(as.matrix(t(data[c(1:3),])),
+	beside = TRUE,
+	legend.text = TRUE,
+	col = seq(5 * n, 5 * n + 10, len = 9),
+	main = paste(row.names(data)[c(1:3)]))
 
 barplot(as.matrix(t(data[c(5:7),])),
 	beside = TRUE,
@@ -21,3 +25,28 @@ barplot(as.matrix(t(data[c(5:7),])),
 	angle = seq(10, 90, len = 9),
 	horiz = TRUE,
 	args.legend = list(x = "bottomright", bty = "n"))
+
+#2_2.2
+x1 = rnorm(50 + 2 * n, mean = n, sd = 0.2 * n)
+x2 = rnorm(40 + 3 * n, mean = 1.1 * n, sd = 0.5 * n)
+x3 = rnorm(60 + n, mean = 1.5 * n, sd = 0.1 * n)
+x4 = runif(110 - n, min = 0.8 * n, max = 1.2 * n)
+
+boxplot(list(x1, x2, x3, x4),
+	names = c("x1", "x2", "x3", "x4"),
+	horizontal = TRUE,
+	range = 1.2,
+	staplewex = 1 / 150,#nihuya ne ponyal kak3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+	notch = TRUE,
+	col = c(1:4)
+)
+
+boxplot(list(x1 + x4, c(x1, x4), (x2 + x3) / 2),
+	names = c("x1 + x4", "x1 & x4", "(x1 + x2) / 2"),
+	range = 0.8,
+	staplewex = n / (2 * n + 6),
+	varwidth = TRUE,
+	col = c((n + 3):(n + 5)),
+	border = c((n + 6):(n + 8)),
+	outwex = 2.5)#33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+boxplot(list(x1 + x4, c(x1, x4), (x2 + x3) / 2), plot = FALSE)
