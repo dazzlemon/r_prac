@@ -76,5 +76,29 @@ file = read_html(theurl)
 tables = html_nodes(file, "table")
 table = html_table(tables[3])#3
 table = as.data.frame(table)
-table = table[(n + 1):(n + 20),]
+table = table[(n + 1):(n + 20),]#nujnie r9dki
+table = table[,c(3, 4, 5, 6, 8)]#ne 4islovie stolci
+
+for(i in 1:20) {
+	t = table[i, 5]
+	if(t == "—/10.00" | t == "10.00/—") table[i, 5] = 10
+	else if(t == "10.00/10.00") table[i, 5] = 20
+	else table[i, 5] = 0
+}
+zno = table[,4]
+
+for(i in 1:20) {
+	zno[i] = list(strsplit(as.character(zno[i]), " "))[[1]]
+}
+zno
+
+table[] = lapply(table, function(x) as.numeric(sub(",", ".", as.character(x), fixed = TRUE)))
+table = rbind(table, list(mean(table[,1]),
+			  mean(table[,2]),
+			  mean(table[,3]),
+			  table[1,4],
+			  mean(table[,5])
+			  ))
+rownames(table)[rownames(table) == "211"] = "avg"
+
 table
