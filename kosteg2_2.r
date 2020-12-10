@@ -50,3 +50,20 @@ boxplot(list(x1 + x4, c(x1, x4), (x2 + x3) / 2),
 	border = c((n + 6):(n + 8)),
 	outwex = 2.5)#33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 boxplot(list(x1 + x4, c(x1, x4), (x2 + x3) / 2), plot = FALSE)
+
+#2_2.3
+curve(sin(x), from = -20 / n, to = 20 / n, col = 50 + n, type = "o")
+curve(sin(n * x) / cosh(n * x), from = -20 / n, to = 20 / n, col = 30 + n, type = "s", add = TRUE)#v obratnom poryadke 4tobi sinusoida pomestilas
+
+#2_2.4
+a1 = 1
+a2 = 2
+a3 = 3
+a4 = 4#zna4eniya pridumay sam
+a5 = 5
+y = function(x) (a1 * x**2 + a2 * x + a3) / (a4 * x + a5)
+
+curve(y, from = -n, to = n, col = 2 * n, type = "b")
+abline(v = -a5 / a4, lty = 3, lwd = 2 + 15 / n, col = 2 * n + 1)
+x = seq(-n, n, len = 100)
+abline(reg = lm(y(x)~x), lty = 3, lwd = 2 + 15 / n, col = 2 * n + 1)
