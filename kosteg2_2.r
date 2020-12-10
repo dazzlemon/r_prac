@@ -67,3 +67,14 @@ curve(y, from = -n, to = n, col = 2 * n, type = "b")
 abline(v = -a5 / a4, lty = 3, lwd = 2 + 15 / n, col = 2 * n + 1)
 x = seq(-n, n, len = 100)
 abline(reg = lm(y(x)~x), lty = 3, lwd = 2 + 15 / n, col = 2 * n + 1)
+
+#2_2.5
+theurl = "https://vstup.info/2015/41/i2015i41p240731.html#list"
+library(xml2)
+library(rvest)
+file = read_html(theurl)
+tables = html_nodes(file, "table")
+table = html_table(tables[3])#3
+table = as.data.frame(table)
+table = table[(n + 1):(n + 20),]
+table
